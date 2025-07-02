@@ -1,168 +1,676 @@
+<!-- gpt says this final so lets see -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="stylesheet" href="styles3.css" />
-  <title>Dough Online - Healthy dough right to your door!</title>
-  <style>
-    
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dough Online - Healthy dough right to your door!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: #fff;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            background: #f4eadc;
+            border-bottom: 2px solid #ccc;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        header img {
+            height: 150px;
+            width: auto;
+        }
+
+        .tagline {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .zoom-hover {
+            transition: transform 0.3s ease;
+        }
+
+        .zoom-hover:hover {
+            transform: scale(1.05);
+        }
+
+        .section {
+            padding: 1rem 4rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 1.5rem 0 0.5rem;
+            padding-top: 1rem;
+            text-align: center;
+        }
+
+        .carousel-container {
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+            padding: 1rem 2.5rem;
+            scroll-behavior: smooth;
+        }
+
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .item {
+            flex: 0 0 auto;
+            width: 250px;
+            text-align: center;
+            scroll-snap-align: start;
+            /* background-color: aquamarine; */
+        }
+
+        .item img {
+            width: 100%;
+            border-radius: 10px;
+            height: auto;
+        }
+
+        .item-name {
+            margin-top: 0.3rem;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .item-price {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ccc;
+            border: none;
+            padding: 8px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        .arrow-left {
+            left: 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .arrow-right {
+            right: 0;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .arrow-btn:hover {
+            background-color: #aaa;
+        }
+
+        footer {
+            background: #5da89e;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        footer div {
+            margin: 0.5rem 0;
+        }
+
+        footer a {
+            margin: 0 0.5rem;
+            color: white;
+            text-decoration: none;
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            background-color: #25D366;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .whatsapp-button img {
+            height: 20px;
+            margin-left: 8px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .item {
+                width: 130px;
+            }
+              .arrow-btn {
+    display: none;
+  }
+        }
+
+        @media screen and (max-width: 480px) {
+            .item {
+                width: 200px;
+            }
+            .section {
+                padding: 0.2rem;
+                /* background-color: #555; */
+            }
+            .carousel {
+                /* background-color: #25D366; */
+                padding: 1rem;
+            }
+            .carousel-container {
+                padding: 0;
+                /* background-color: aqua; */
+            }
+            /* .carousel img{
+                width: 8rem;
+                height: auto;
+            } */
+            .section-title {
+                font-size: 1.2rem;
+            }
+            header {
+                padding: 1rem;
+            }
+            header img {
+                height: 100px;
+            }
+
+            header h2 {
+                font-size: 1.0rem;
+            }
+            header .tagline {
+                font-size: 0.8rem;
+            }
+
+        }
+
+        .item-action {
+            margin-top: 0.5rem;
+        }
+        .addtobag_btn {
+            background: #5da89e;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .qty-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .qty-box button {
+            padding: 2px 6px;
+            background: #5da89e;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+        }
+
+        .qty-box span {
+            min-width: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <img src="logo.png" alt="Dough Online Logo" />
-    <!-- <div> -->
-        <h2>Now delivering in Ramprastha Greens</h2>
-        <p class="tagline">Try our new range of homemade dough — fresh, healthy, and delivered right to your door!</p>
-    <!-- </div> -->
-  </header>
+    <header>
+        <img src="logo.png" alt="Dough Online Logo" />
+        <div>
+            <h2>Now delivering in Ramprastha Greens</h2>
 
-  <div class="section">
+            <p class="tagline">Try our new range of homemade dough — fresh, healthy, and delivered right to your door!
+            </p>
+        </div>
+    </header>
 
-    <!-- CATEGORY 1 -->
-    <div class="section-title">BESTSELLERS!</div>
-    <div class="carousel-container">
-      <button class="arrow-btn arrow-left" onclick="scrollLeft('carousel1')">◀</button>
-      <div class="carousel" id="carousel1">
-        <div class="item zoom-hover"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item zoom-hover"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item zoom-hover"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <!-- <div class="item"><img src="https://i.pinimg.com/736x/7d/09/91/7d09910f84de7b90523963c7098fe859.jpg"/><div class="item-name">Item 2</div><div class="item-price">₹120/g</div></div> -->
-        <!-- <div class="item"><img src="https://i.pinimg.com/736x/7d/09/91/7d09910f84de7b90523963c7098fe859.jpg"/><div class="item-name">Item 3</div><div class="item-price">₹90/g</div></div> -->
-        <div class="item zoom-hover"><img src="https://via.placeholder.com/160"/><div class="item-name">Item 4</div><div class="item-price">₹110/g</div></div>
-        <div class="item zoom-hover"><img src="https://via.placeholder.com/160"/><div class="item-name">Item 5</div><div class="item-price">₹105/g</div></div>
-      </div>
-      <button class="arrow-btn arrow-right" onclick="scrollRight('carousel1')">▶</button>
-    </div>
+     <div class="section">
 
-    <!-- CATEGORY 2 -->
-    <div class="section-title">Stuffings</div>
-    <div class="carousel-container">
-      <button class="arrow-btn arrow-left" onclick="scrollLeft('carousel2')">◀</button>
-      <div class="carousel" id="carousel2">
-        <div class="item zoom-hover"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item zoom-hover"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item zoom-hover"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item zoom-hover"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
+        <!-- CATEGORY 1 -->
+        <div class="section-title">BESTSELLERS!</div>
+        <div class="carousel-container">
+            <button class="arrow-btn arrow-left" onclick="scrolltoLeft('carousel1')">◀</button>
+            <div class="carousel" id="carousel1">
+                <div class="item zoom-hover" data-name="Item 1"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Item 1</div>
+                    <div class="item-price">₹100/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Item 2"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Item 2</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Item 3"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Item 3</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Item 4"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Item 4</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Item 5"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Item 5</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Item 6"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Item 6</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow-btn arrow-right" onclick="scrollRight('carousel1')">▶</button>
+        </div>
 
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Paneer</div><div class="item-price">₹80/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Potato</div><div class="item-price">₹70/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Spinach</div><div class="item-price">₹90/g</div></div>
-      </div>
-      <button class="arrow-btn arrow-right" onclick="scrollRight('carousel2')">▶</button>
-    </div>
+        <!-- CATEGORY 2 -->
+        <div class="section-title">Stuffings</div>
+        <div class="carousel-container">
+            <button class="arrow-btn arrow-left" onclick="scrolltoLeft('carousel2')">◀</button>
+            <div class="carousel" id="carousel2">
+                <div class="item zoom-hover" data-name=" Aloo Stuffing"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Aloo</div>
+                    <div class="item-price">₹100/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Paneer Stuffing"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Paneer</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Paneer-Pyaz Stuffing"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Paneer-Pyaz</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Gobhi Stuffing"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Gobhi</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Mooli Stuffing"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Mooli</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Moong Dal Stuffing"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Moong Dal Peethi</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+            <div class="item zoom-hover" data-name="Mix Veg Stuffing"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Mix Veg</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow-btn arrow-right" onclick="scrollRight('carousel2')">▶</button>
+        </div>
 
         <!-- CATEGORY 3 -->
-    <div class="section-title">Poori Doughs</div>
-    <div class="carousel-container">
-      <button class="arrow-btn arrow-left" onclick="scrollLeft('carousel2')">◀</button>
-      <div class="carousel" id="carousel2">
-                <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Paneer</div><div class="item-price">₹80/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Potato</div><div class="item-price">₹70/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Spinach</div><div class="item-price">₹90/g</div></div>
-      </div>
-      <button class="arrow-btn arrow-right" onclick="scrollRight('carousel2')">▶</button>
-    </div>
-
+        <div class="section-title">Poori Dough</div>
+        <div class="carousel-container">
+            <button class="arrow-btn arrow-left" onclick="scrolltoLeft('carousel3')">◀</button>
+            <div class="carousel" id="carousel3">
+                <div class="item zoom-hover" data-name="Plain Wheat Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Plain Wheat</div>
+                    <div class="item-price">₹100/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Beetroot Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Beetroot</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Palak Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Palak</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Methi Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Methi</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Bathua Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Bathua</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Bedmi Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Bedmi</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow-btn arrow-right" onclick="scrollRight('carousel3')">▶</button>
+        </div>
+        
         <!-- CATEGORY 4 -->
-    <div class="section-title">Roti Doughs</div>
-    <div class="carousel-container">
-      <button class="arrow-btn arrow-left" onclick="scrollLeft('carousel2')">◀</button>
-      <div class="carousel" id="carousel2">
-                <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Paneer</div><div class="item-price">₹80/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Potato</div><div class="item-price">₹70/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Spinach</div><div class="item-price">₹90/g</div></div>
-      </div>
-      <button class="arrow-btn arrow-right" onclick="scrollRight('carousel2')">▶</button>
-    </div>
+        <div class="section-title">Roti Dough</div>
+        <div class="carousel-container">
+            <button class="arrow-btn arrow-left" onclick="scrolltoLeft('carousel4')">◀</button>
+            <div class="carousel" id="carousel4">
+                <div class="item zoom-hover" data-name="Plain Wheat Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Plain Wheat</div>
+                    <div class="item-price">₹100/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Multigrain Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Multigrain</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Jau Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Jau</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow-btn arrow-right" onclick="scrollRight('carousel4')">▶</button>
+        </div>
 
         <!-- CATEGORY 5 -->
-    <div class="section-title">Gluten-free Doughs</div>
-    <div class="carousel-container">
-      <button class="arrow-btn arrow-left" onclick="scrollLeft('carousel2')">◀</button>
-      <div class="carousel" id="carousel2">
-                <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Paneer</div><div class="item-price">₹80/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Potato</div><div class="item-price">₹70/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Spinach</div><div class="item-price">₹90/g</div></div>
-      </div>
-      <button class="arrow-btn arrow-right" onclick="scrollRight('carousel2')">▶</button>
-    </div>
+        <div class="section-title">Gluten-free Dough</div>
+        <div class="carousel-container">
+            <button class="arrow-btn arrow-left" onclick="scrolltoLeft('carousel5')">◀</button>
+            <div class="carousel" id="carousel5">
+                <div class="item zoom-hover" data-name="Makka Gluten-free Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Makka</div>
+                    <div class="item-price">₹100/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Bajra Gluten-free Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Bajra</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Jawar Gluten-free Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Jawar</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Ragi Gluten-free Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Ragi</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Rajgiri Gluten-free Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Rajgiri</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Oats+Quinoa Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Oats+Quinoa</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow-btn arrow-right" onclick="scrollRight('carousel5')">▶</button>
+        </div>
 
         <!-- CATEGORY 6 -->
-    <div class="section-title">Stuffed Doughs</div>
-    <div class="carousel-container">
-      <button class="arrow-btn arrow-left" onclick="scrollLeft('carousel2')">◀</button>
-      <div class="carousel" id="carousel2">
-                <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Paneer</div><div class="item-price">₹80/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Potato</div><div class="item-price">₹70/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Spinach</div><div class="item-price">₹90/g</div></div>
-      </div>
-      <button class="arrow-btn arrow-right" onclick="scrollRight('carousel2')">▶</button>
-    </div>
-
-
+        <div class="section-title">Stuffed Dough</div>
+        <div class="carousel-container">
+            <button class="arrow-btn arrow-left" onclick="scrolltoLeft('carousel6')">◀</button>
+            <div class="carousel" id="carousel6">
+                <div class="item zoom-hover" data-name="Beetroot Stuffed Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Beetroot</div>
+                    <div class="item-price">₹100/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Palak Stuffed Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Palak</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Methi Stuffed Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Methi</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Bathua Stuffed Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Bathua</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Moong Dal Stuffed Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Moong Dal</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow-btn arrow-right" onclick="scrollRight('carousel6')">▶</button>
+        </div>
+        
         <!-- CATEGORY 7 -->
-    <div class="section-title">Navratra Special</div>
-    <div class="carousel-container">
-      <button class="arrow-btn arrow-left" onclick="scrollLeft('carousel2')">◀</button>
-      <div class="carousel" id="carousel2">
-                <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
-        <div class="item"><img src="https://i.pinimg.com/736x/07/e4/32/07e4328089ad30861a45c7b2faa05f06.jpg"/><div class="item-name">Item 1</div><div class="item-price">₹100/g</div></div>
+        <div class="section-title">Navratra Special Dough</div>
+        <div class="carousel-container">
+            <button class="arrow-btn arrow-left" onclick="scrolltoLeft('carousel7')">◀</button>
+            <div class="carousel" id="carousel7">
+                <div class="item zoom-hover" data-name="Aloo stuffed Kuttu Aata Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Aloo stuffed Kuttu Aata Dough</div>
+                    <div class="item-price">₹100/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Aloo+Sabudana Stuffed Singhara Aata Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Aloo+Sabudana Stuffed Singhara Aata Dough</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+                <div class="item zoom-hover" data-name="Plain Sawak Aata Dough"><img src="https://www.alsothecrumbsplease.com/wp-content/uploads/2021/06/Cold-Fermented-Pizza-Dough-37-500x500.jpg" />
+                    <div class="item-name">Plain Sawak Aata Dough</div>
+                    <div class="item-price">₹120/g</div>
+                    <div class="item-action">
+                        <button class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>
+                    </div>
+                </div>
+            </div>
+            <button class="arrow-btn arrow-right" onclick="scrollRight('carousel7')">▶</button>
+        </div>
+        
+        <!-- End of Categories -->
 
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Paneer</div><div class="item-price">₹80/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Potato</div><div class="item-price">₹70/g</div></div>
-        <div class="item"><img src="https://via.placeholder.com/160"/><div class="item-name">Spinach</div><div class="item-price">₹90/g</div></div>
-      </div>
-      <button class="arrow-btn arrow-right" onclick="scrollRight('carousel2')">▶</button>
     </div>
-    <!-- Add more categories below the same way -->
 
-  </div>
+    <a class="whatsapp-button" onclick=" handleOrder(event)"
+        href="https://wa.me/918779699165?text=Hi%20I%20want%20to%20order%20dough!" target="_blank">
+        Order Now!
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+    </a>
 
-  <!-- <a class="whatsapp-button" href="https://wa.me/918180050355?text=Hi%2C%20I%20want%20to%20order%20dough!" target="_blank"> -->
-    <a class="whatsapp-button" href="https://wa.me/918180050355?text=Hi%20I%20want%20to%20order%20dough!" target="_blank">
+    <footer>
+        <div>Lorem ipsum dolor sit amet...</div>
+        <div>Consectetur adipiscing elit...</div>
+        <div>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/instagram-new.png" /></a>
+            <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/mail.png" /></a>
+            <span>+91 99999 99999</span>
+        </div>
+    </footer>
 
-    Order Now!
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"/>
-  </a>
+    <script>
+        function scrollRight(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollBy({ left: 200, behavior: 'smooth' });
+        }
+        function scrolltoLeft(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollBy({ left: -200, behavior: 'smooth' });
+        }
 
-  <footer>
-    <div>Lorem ipsum dolor sit amet, Lorem, ipsum dolor sit amet consectetur adipisicing elit..</div>
-    <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum, dolor sit amet consectetur adipisicing elit. Minima, officia?.</div>
-    <div>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/instagram-new.png"/></a>
-      <a href="#"><img src="https://img.icons8.com/ios-filled/20/ffffff/mail.png"/></a>
-      <span>+91 99999 99999</span>
-    </div>
-  </footer>
+        const cart = {};
 
-  <script>
-    function scrollRight(id) {
-      document.getElementById(id).scrollBy({ left: 200, behavior: 'smooth' });
+        function addToBag(btn) {
+            const item = btn.closest(".item");
+            const name = item.getAttribute("data-name");
+            cart[name] = 1;
+            updateItemUI(item, name);
+            updateWhatsappLink();
+        }
+
+function handleOrder(event) {
+    if (Object.keys(cart).length === 0) {
+        alert("Please add items to cart");
+        event.preventDefault(); // stops the link
+        return;
     }
-    function scrollLeft(id) {
-      document.getElementById(id).scrollBy({ left: -200, behavior: 'smooth' });
-    }
-  </script>
+
+    // allow navigation
+    const link = document.querySelector(".whatsapp-button").getAttribute("href");
+    window.location.href = link;
+}
+
+        function changeQty(name, delta) {
+            if (!cart[name]) return;
+            cart[name] += delta;
+            if (cart[name] <= 0) {
+                delete cart[name];
+            }
+            const item = document.querySelector(`.item[data-name="${name}"]`);
+            updateItemUI(item, name);
+            updateWhatsappLink();
+        }
+
+        function updateItemUI(item, name) {
+            const actionDiv = item.querySelector(".item-action");
+            if (cart[name]) {
+                actionDiv.innerHTML = `
+        <div class="qty-box">
+          <button  onclick="changeQty('${name}', -1)">−</button>
+          <span>${cart[name]}</span>
+          <button  onclick="changeQty('${name}', 1)">+</button>
+        </div>`;
+            } else {
+                actionDiv.innerHTML = `<button  class="addtobag_btn" onclick="addToBag(this)">Add to bag</button>`;
+            }
+        }
+
+        function updateWhatsappLink() {
+            let message = "Hi! I want to order:\nItem  -  Quantity\n";
+            for (let item in cart) {
+                message += `${item}  -  ${cart[item]} \n`;
+            }
+            message += "Address: \nPhone:";
+            const encoded = encodeURIComponent(message);
+            const link = `https://wa.me/918779699165?text=${encoded}`;
+            document.querySelector(".whatsapp-button").setAttribute("href", link);
+        }
+    </script>
+
+
+    </script>
 
 </body>
+
 </html>
